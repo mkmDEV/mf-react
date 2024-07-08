@@ -16,13 +16,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - run: npm install
-      - run: npm run build
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - uses: shinyinc/action-aws-cli@v1.2
-      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Sync to S3
+        uses: aws-actions/s3-sync-action@v1.1.0
+        with:
+          source_dir: 'dist'
+          destination_bucket: ${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ''
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
