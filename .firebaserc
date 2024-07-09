@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "microfrontend-b16bd"
-  }
+  },
+  "targets": {
+    "microfrontend-b16bd": {
+      "hosting": {
+        "container": [
+          "microfrontend"
+        ],
+        "marketing": [
+          "microfrontend"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
