@@ -31,6 +31,4 @@ jobs:
       - name: Deploy to Firebase
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: |
-          cd container
-          firebase deploy --only hosting:container --token ${{ secrets.FIREBASE_TOKEN }}
+        run: firebase deploy --only hosting:container --token ${{ secrets.FIREBASE_TOKEN }}
