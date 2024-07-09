@@ -5,6 +5,12 @@
   "targets": {
     "microfrontend-b16bd": {
       "hosting": {
+        "auth": [
+          "microfrontend"
+        ],
+        "dashboard": [
+          "microfrontend"
+        ],
         "container": [
           "microfrontend"
         ],
