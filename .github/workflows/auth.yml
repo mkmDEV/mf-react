@@ -1,15 +1,15 @@
-name: deploy-container
+name: deploy-auth
 
 on:
   push:
     branches:
       - master
     paths:
-      - 'container/**'
+      - 'auth/**'
 
 defaults:
   run:
-    working-directory: container
+    working-directory: auth
 
 jobs:
   build:
@@ -26,12 +26,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd container
+          cd auth
           npm install
 
           - name: Build project
             run: |
-              cd container
+              cd auth
               npm run build
 
       - name: Install Firebase CLI
@@ -41,5 +41,5 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
-          cd container
-          firebase deploy --only hosting:container --token ${{ secrets.FIREBASE_TOKEN }}
+          cd auth
+          firebase deploy --only hosting:auth --token ${{ secrets.FIREBASE_TOKEN }}

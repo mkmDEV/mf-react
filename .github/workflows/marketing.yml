@@ -1,15 +1,15 @@
-name: deploy-container
+name: deploy-marketing
 
 on:
   push:
     branches:
       - master
     paths:
-      - 'container/**'
+      - 'marketing/**'
 
 defaults:
   run:
-    working-directory: container
+    working-directory: marketing
 
 jobs:
   build:
@@ -26,12 +26,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd container
+          cd marketing
           npm install
 
           - name: Build project
             run: |
-              cd container
+              cd marketing
               npm run build
 
       - name: Install Firebase CLI
@@ -41,5 +41,5 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
-          cd container
-          firebase deploy --only hosting:container --token ${{ secrets.FIREBASE_TOKEN }}
+          cd marketing
+          firebase deploy --only hosting:marketing --token ${{ secrets.FIREBASE_TOKEN }}

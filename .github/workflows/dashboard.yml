@@ -1,15 +1,15 @@
-name: deploy-container
+name: deploy-dashboard
 
 on:
   push:
     branches:
       - master
     paths:
-      - 'container/**'
+      - 'dashboard/**'
 
 defaults:
   run:
-    working-directory: container
+    working-directory: dashboard
 
 jobs:
   build:
@@ -26,12 +26,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd container
+          cd dashboard
           npm install
 
           - name: Build project
             run: |
-              cd container
+              cd dashboard
               npm run build
 
       - name: Install Firebase CLI
@@ -41,5 +41,5 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
-          cd container
-          firebase deploy --only hosting:container --token ${{ secrets.FIREBASE_TOKEN }}
+          cd dashboard
+          firebase deploy --only hosting:dashboard --token ${{ secrets.FIREBASE_TOKEN }}
