@@ -4,21 +4,10 @@
   },
   "targets": {
     "microfrontend-b16bd": {
-      "hosting": {
-        "auth": [
-          "microfrontend"
-        ],
-        "dashboard": [
-          "microfrontend"
-        ],
-        "container": [
-          "microfrontend"
-        ],
-        "marketing": [
-          "microfrontend"
-        ]
+      "hosting":
+        "container": ["microfrontend-b16bd-9c12f"],
+        "marketing": ["microfrontend-b16bd"]
       }
     }
   },
-  "etags": {}
 }
